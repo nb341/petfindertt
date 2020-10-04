@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="navbar navbar-default navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="{% static 'img/petfindertt.png' %}" style="height:60px"></a>
+    <span class="navbar-text custom-color" id="navTitle" style="font-size: 45px;">PetfinderTT</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+      <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a class="nav-item nav-link active" href="{% url 'index' %}">Home</a></li>
+              <li><a data-toggle="modal" data-target="#myModal" class="nav-item nav-link" href="#">Login</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'sign_up' %}">Sign Up</a></li>
+            </ul>
+            <form method="post">
+                <div class="modal" id="myModal" data-backdrop="static">
+                  <div class="modal-dialog">
+                  <div class="modal-content">
+                  <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                   <!-- Modal body -->
+                  
+                      <div class="modal-body">
+                      <div id="error"></div>
+                        <div class="form-group">
+                          <label for="username">User Name:</label>
+                          <input type="text/email" class="form-control" placeholder="Enter user name" name="email" id="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Password:</label>
+                          <input type="password" class="form-control" name="pwd" placeholder="Enter password" id="pwd">
+                        </div>
+                          <div class="form-group form-check">
+                          <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox"> Remember me
+                          </label>
+                        </div>
+                          <input type="button" name="login" id="login" class="btn btn-success" value="Login" />
+                          <a class="btn btn-primary" href="{% url 'sign_up' %}">Sign Up</a>
+                      </div>
+                       <!-- Modal footer -->
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
+                  </div>
+                  </div>
+                  </form>
+      </div>
+  
+    </div>
+  </nav>

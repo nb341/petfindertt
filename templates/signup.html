@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block head %}
+<title>Sign Up</title>
+
+<script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+{% endblock %}
+{%block content%}
+{% include 'partials/navbar.html' %}
+<div class="row">
+<!--col 1-->
+<div class="col-sm-2">
+
+</div>
+<!--col 1 end-->
+<!--col 2 start-->
+<div class="col-sm-8" style="background-color: white; padding:20px;border: 2px solid #f5f5f5; border-radius: 25px; padding-top: 5px; margin: 25px 25px 25px 25px;">
+    <div class="container"> 
+        <h2 style="text-align: center;">Sign Up</h2>
+        <form id="create_user_form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+            <div id="success"></div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="">Select User Type:</label>
+          <div class="col-sm-10">
+          <select class="form-control" name="user_option" id="user_option" onchange="display()">
+            <option value="Pet Owner">Pet Owner</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Shelter">Shelter</option>
+            <option value="Rescuer">Rescuer</option>
+            <option value="Veterinarian">Veterinarian</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="fname">First Name:</label>
+            <span id="fname-err" class = "error"></span>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="fname_" placeholder="Enter First Name" name="fname_">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lname">Last Name:</label>
+            <span id="lname-err" class = "error"></span>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="lname_" placeholder="Enter Last Name" name="lname_">
+            </div>
+        </div>
+        <div class="form-group">
+            <div id="uname-err" class = "error"></div>
+              <label class="control-label col-sm-2" for="username">User Name:</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control" id="uname_" placeholder="Enter User Name" name="uname_">
+              </div>
+        </div>
+        <div class="form-group">
+            <div id="email-err" class = "error"> </div>
+              <label class="control-label col-sm-2" for="email">Email:</label>
+              <div class="col-sm-10">
+              <input type="email" class="form-control" id="email_" placeholder="Enter Email Address" name="email_">
+              </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="phone">Contact Number:</label>
+            <span id="cn-err" class = "error"> </span>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="phone_" placeholder="Enter Contact Number" name="phone_">
+            </div>
+        </div>
+        <div class = "form-group">
+            <div id="gender-err" class = "error"></div>
+              <label class="control-label col-sm-2" for="">Select Gender:</label>
+              <div class="form-check form-check-inline">
+              <div class="col-sm-10">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male">
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+              </div>
+            </div>
+              <div class="form-check form-check-inline">
+              <div class="col-sm-10">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female">
+              <label class="form-check-label" for="inlineRadio2">Female</label>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div id="pass-err" class = "error"></div>
+              <label class="control-label col-sm-2" for="password">Password:</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control" id="pass" placeholder="Enter Password" name="pass">
+              </div>
+        </div>
+        <div class="form-group">
+            <div id="pass1-err" class = "error"> </div>
+              <label class="control-label col-sm-2" for="repeat_pass">Repeat Password:</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control" id="r_pass" placeholder="Repeat Password" name="r_pass">
+              </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="profile_picture">Upload Profile Picture:</label>
+            <div id="propic-err" class = "error"> </div>
+            <div class="col-sm-10">
+            <input class="form-control" type="file" name="pro_picture" accept="image/*" multiple id="pro_picture">
+            </div>
+        </div>
+        <div class="form-group" id = "cert-form" style="display: none;">
+            <label class="control-label col-sm-2" for="certificate">Upload Certificates:</label>
+            <div id="cert-err" class = "error"> </div>
+            <div class="col-sm-10">
+            <input class="form-control" type="file" name="certs[]" accept="image/*" multiple id="certificate">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" id="create_user" class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+          
+        
+        </form>
+    </div>
+</div>
+<!--col 2 end-->
+<!--col 3 start-->
+<div class="col-sm-2"></div>
+<!--col 3 end-->
+</div>
+{%endblock%}
