@@ -2,11 +2,13 @@ $(document).ready(function(){
     $('#login').click(function(){
      var username = $('#email').val();
      var password = $('#pwd').val();
+     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
      if($.trim(username).length > 0 && $.trim(password).length > 0)
      {
       $.ajax({
-       url:"login.php",
+       url:"login/",
        method:"POST",
+       headers: {'X-CSRFToken': csrftoken},
        data:{username:username, password:password},
        cache:false,
        beforeSend:function(){
@@ -15,10 +17,9 @@ $(document).ready(function(){
        success:function(data)
        {
            // alert(data);
-        if(data)
+        if(data.success)
         {
-           
-         window.location = "index.php";
+         window.location = "/";
         }
         else
         {

@@ -1,13 +1,10 @@
-from django.contrib.auth import login, authenticate
 from .models import User
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def home(request):
-    context ={}
-    context["val"] = [1,2,3,4,5,6,7,8,9,10]
-    return render(request, "home.html", context)
+    return render(request, "home.html")
 
 def checkUser(request):
     
@@ -54,6 +51,7 @@ def signup(request):
                     if propic:
                         user.pro_pic = propic
                     user.save()
+                    user = authenticate(request, username=uname, password=pass1)
                     return JsonResponse({'success':True})
 
 
@@ -64,3 +62,19 @@ def signup(request):
         return JsonResponse({'name': fname+" "+lname})
     else:
         return render(request, 'signup.html')
+
+def login_view(request):
+    if request.method=="POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return JsonResponse({'success':True})
+        else:
+        # Return an 'invalid login' error message.
+            return JsonResponse({'success':False})
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('index')
