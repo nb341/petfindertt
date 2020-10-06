@@ -1,0 +1,1 @@
+web: gunicorn petfindertt.wsgi
