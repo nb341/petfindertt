@@ -27,12 +27,13 @@ SECRET_KEY = '0)1!^$$c#kkj5*$_!6l)$oc58^3pv%tobb5!dn4mgn))pri^7c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['petfindertt.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ["petfindertt.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'missing_pets',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',

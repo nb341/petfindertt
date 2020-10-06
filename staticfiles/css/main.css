@@ -1,11 +1,16 @@
 
+html, body {
+  overflow-x:hidden;
+  height:100%;
+}
 .container-fluid{
     padding:0px;
   }
   .navbar-text {
       font-size:35px;
   }
-
+  
+  
   
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:focus,
@@ -23,3 +28,9 @@
   #navTitle{
     font-size: l50px;
   }
+
+  
+
+  .dropdown-menu {
+    min-width: 250px;
+}

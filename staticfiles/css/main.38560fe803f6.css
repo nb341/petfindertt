@@ -1,0 +1,35 @@
+
+.container-fluid{
+    padding:0px;
+  }
+  .navbar-text {
+      font-size:35px;
+  }
+  
+  
+  
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: #439348;
+    border-bottom: 1px solid #c4652d;
+  }
+   
+  body{
+    background-color:#f5f5f5;
+  }
+
+  #navTitle{
+    font-size: l50px;
+  }
+
+  html, body {
+    overflow-x:hidden;
+    height:100%;
+  }
+
+  .dropdown-menu {
+    min-width: 250px;
+}
