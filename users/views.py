@@ -16,18 +16,18 @@ def home(request):
        now = datetime.now(timezone.utc)
        d = now - i.post_time
        i.post_time = d.days
-   
+
     return render(request, "home.html", val)
 
 def checkUser(request):
-    
+
     uname_ = request.GET.get('uname_',None)
     u = {'available' : not User.objects.filter(username=uname_).exists()}
     print("It WORKS")
     return JsonResponse(u)
 
 def signup(request):
-    
+
     if request.method=='POST':
         data = {}
         ust = request.POST['user_option']
@@ -41,7 +41,7 @@ def signup(request):
         pass2 = request.POST['r_pass']
         propic = request.FILES['pro_picture']
         certs = request.FILES.getlist('certs')
-        
+
         if pass1==pass2:
             if User.objects.filter(username=uname).exists():
                 data['username'] = False
@@ -71,7 +71,7 @@ def signup(request):
                         print(user.id)
                         f.save()
                     user.save()
-                    
+
                     user = authenticate(request, username=uname, password=pass1)
                     return JsonResponse({'success':True})
 
@@ -101,5 +101,14 @@ def logout_view(request):
     return redirect('index')
 
 
-def page_not_found_view(request, exception):
+def server_error(request):
+    return render(request, '404.html')
+
+def not_found(request, exception):
+    return render(request, '404.html')
+
+def permission_denied(request, exception):
+    return render(request, '404.html')
+
+def bad_request(request, exception):
     return render(request, '404.html')

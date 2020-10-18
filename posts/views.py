@@ -7,12 +7,12 @@ from .models import MissingPets, Images
 from users.models import User
 
 
+
 # Create your views here.
-def my_custom_page_not_found_view(request, exception):
-    return render('404.html')
+
 
 def postmissingpet_view(request):
-    if request.user.is_authenticated():
+    if request.user:
         if request.method == "POST":
             pet_name = request.POST['pet_name']
             a_type = request.POST['a_type']
@@ -24,7 +24,7 @@ def postmissingpet_view(request):
             lat = request.POST['lat']
             lng = request.POST['long']
 
-            mp = MissingPets.objects.create(name=pet_name, atype=a_type, breed=breed, 
+            mp = MissingPets.objects.create(name=pet_name, atype=a_type, breed=breed,
                                         desc=pd, lat=lat, lng=lng,
                                         translated_add=address, user_id=request.user,
                                         pic=mi
@@ -35,11 +35,11 @@ def postmissingpet_view(request):
                 i.missing_pets_id = mp
                 i.save()
             mp.save()
-        
-        
+
+
             return render(request, 'missingpets/postmissingpets.html', {'val':mp.save()})
     else:
-        pass
+        HttpResponse('suck it')
 
 
     return render(request, 'missingpets/postmissingpets.html')
