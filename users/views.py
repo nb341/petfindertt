@@ -1,10 +1,23 @@
-from .models import User
+from .models import User, FeedFile
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
+from posts.models import MissingPets
+from datetime import datetime, timezone
+
+
 # Create your views here.
 def home(request):
-    return render(request, "home.html")
+    mp = MissingPets.objects.all()
+    print(mp)
+    val = {'mp':mp}
+    li = []
+    for i in val['mp']:
+       now = datetime.now(timezone.utc)
+       d = now - i.post_time
+       i.post_time = d.days
+   
+    return render(request, "home.html", val)
 
 def checkUser(request):
     
@@ -27,6 +40,8 @@ def signup(request):
         pass1 = request.POST['pass']
         pass2 = request.POST['r_pass']
         propic = request.FILES['pro_picture']
+        certs = request.FILES.getlist('certs')
+        
         if pass1==pass2:
             if User.objects.filter(username=uname).exists():
                 data['username'] = False
@@ -50,7 +65,13 @@ def signup(request):
                         user.is_vet = True
                     if propic:
                         user.pro_pic = propic
+                    for c in certs:
+                        f = FeedFile.objects.create(file=c, user_id=user)
+                        user.certificates.add(f)
+                        print(user.id)
+                        f.save()
                     user.save()
+                    
                     user = authenticate(request, username=uname, password=pass1)
                     return JsonResponse({'success':True})
 
@@ -78,3 +99,7 @@ def logout_view(request):
     logout(request)
     # Redirect to a success page.
     return redirect('index')
+
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html')

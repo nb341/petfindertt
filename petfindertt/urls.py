@@ -20,8 +20,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('users.urls')),
-    path('', include('missing_pets.urls')),
+    path('', include('posts.urls')),
     path('admin/', admin.site.urls),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'users.views.page_not_found_view'

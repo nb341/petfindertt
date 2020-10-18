@@ -29,12 +29,17 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-def user_directory_path(self, filename):
+def user_directory_path(instance, filename):
         # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-        return 'user/pro-pic/{0}/{1}'.format(self.id, filename)
-def user_certs(self, filename):
+        return 'users/{0}/pro-pic/{1}'.format(instance.email, filename)
+def user_certs(instance, filename):
         # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-        return 'user/certificates/{0}/{1}'.format(self.id, filename)
+        return 'users/{0}/certificates/{1}'.format(instance.user_id, filename)
+
+class FeedFile(models.Model):
+    file = models.FileField(upload_to=user_certs)
+    user_id = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
+
 class User(AbstractBaseUser):
     
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -50,7 +55,7 @@ class User(AbstractBaseUser):
     is_volunteer = models.BooleanField(default=False)
     is_rescuer = models.BooleanField(default=False)
     pro_pic = models.ImageField(upload_to=user_directory_path)
-    certificates = models.FileField(upload_to=user_certs,default=None)
+    certificates = models.ManyToManyField(FeedFile)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', ]

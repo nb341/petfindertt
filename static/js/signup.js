@@ -177,11 +177,10 @@ $(document).ready(function() {
         if (doAjax != 0) {
             var form = $('#create_user_form')[0];
             var formData = new FormData(form);
-            formData.append('checker', '0');
             // Set header if need any otherwise remove setup part
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="token"]').attr('value')
+                    'X-CSRF-TOKEN': $('[name=csrfmiddlewaretoken]').attr('value')
                 }
             });
             $.ajax({

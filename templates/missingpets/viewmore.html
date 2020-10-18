@@ -1,0 +1,129 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block head %}
+<title>View More: {{mp.name}}</title>
+{% endblock %}
+{% block nav %}
+{% include '../partials/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+	<div class="row" style="padding:10px; margin:10px;">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title mb-4">
+						<div class="d-flex justify-content-start">
+							<div class="image-container">
+								<img src="{{mp.pic.url}}" id="imgProfile" style="width: 150px; height: 150px;" class="img-thumbnail" />
+							</div>
+							<div class="userData ml-3">
+								<h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{mp.name}}</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab" aria-controls="connectedServices" aria-selected="false">View Photos</a>
+                                    </li>
+                                </ul>
+                                                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Posted By</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{mp.user_id}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Type of animal</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                              {{mp.atype}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Breed</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                 {{mp.breed}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Description</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{mp.desc}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Location last seen</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <div class="location">
+                                                  {{mp.translated_add}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Coordinates of last seen location</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                   Latitude: {{mp.lat}}</br>Longitude: {{mp.lng}}                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Last Updated</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                              {{mp.post_time}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <!-- second tab -->
+                                    <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
+                                        <!-- photos -->
+                                        {% if img %}
+                                        {% for im in img %}
+                                          <img src="{{im.img.url}}" id='images' style='width: 250px; height: 250px' class='img-thumbnail' />
+                                        {% endfor %}
+                                        {% else %}
+                                        <p>No photos to display. Sorry!!!</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+
+
+{% endblock %}

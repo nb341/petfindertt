@@ -1,0 +1,44 @@
+<hr>
+                                                    <div class='row'>
+                                                        <div class='col-sm-3 col-md-2 col-5'>
+                                                            <label style='font-weight:bold;'>Description</label>
+                                                        </div>
+                                                        <div class='col-md-8 col-6'>
+                                                            <input type='hidden' value='{{mp.id}}' class='form-control' id='a_type' name='id'>
+                                                            <textarea class='form-control' id='desc' name='description'>{{mp.desc}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class='row'>
+                                                        <div class='col-sm-3 col-md-2 col-5'>
+                                                            <label style='font-weight:bold;'>Upload Pictures of Animal</label>
+                                                        </div>
+                                                        <div class='col-md-8 col-6'>
+                                                        <input class='form-control' id='pet_pic' type='file' name='images' accept='image/*' multiple>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                    <div class='row'>
+                                                    <div class='mx-auto form-control col-12 col-sm-8' id='myMap'></div><br/>
+                                                    </div>
+                                                    <hr/>
+                                                    <div class='row'>
+                                                        <div class='col-sm-3 col-md-2 col-5'>
+                                                            <label style='font-weight:bold;'>Location last seen</label>
+                                                        </div>
+                                                        <div class='col-md-8 col-6'>
+
+                                                            <input type='text' value='{{mp.translated_add}}' class='form-control' id='address' name='address'>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                    <hr><div class='row'>
+                                                        <div class='col-sm-3 col-md-2 col-5'>
+                                                            <label style='font-weight:bold;'>Coordinates of last seen location</label>
+                                                        </div>
+                                                        <div class='col-md-8 col-6'>
+                                                         Latitude: <input type='text' value='{{mp.lat}}' class='form-control' id='latitude' name='latitude'>
+                                                         Longitude: <input type='text' value='{{mp.lng}}' class='form-control' id='longitude' name='longitude'>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
