@@ -5,12 +5,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import MissingPets, Images
 from users.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
 
-
+@login_required
 def postmissingpet_view(request):
     if request.user:
         if request.method == "POST":
@@ -38,11 +39,9 @@ def postmissingpet_view(request):
 
 
             return render(request, 'missingpets/postmissingpets.html', {'val':mp.save()})
-    else:
-        HttpResponse('suck it')
-
 
     return render(request, 'missingpets/postmissingpets.html')
+
 
 def view_missing_pet(request, pk):
     mp = get_object_or_404(MissingPets, pk=pk)

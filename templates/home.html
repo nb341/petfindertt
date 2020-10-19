@@ -7,19 +7,19 @@
 {% endblock %}
 {% block content %}
 
-    
-     
+
+
     {% include 'partials/secondary-nav.html' %}
     <div class="row">
      {% for i in mp %}
      <div class="col-sm-12 col-lg-3">
     <div class="card" style="margin:10px; padding:10px">
-    <img style="width:250; height:250px;" class="card-img-top" src="{{i.pic.url}}" alt="">
+    <img style="width:100%; height:100%;" class="card-img-top" src="{{i.pic.url}}" alt="">
     <div class="card-body">
-      
-      <h2 class="card-title">{{i.name}}</h2>
-      <h3 class="card-text">{{i.id}}</h3>
-      <h4 class="card-text">{{i.breed}}</h4>
+
+      <h2 class="card-title">Name: {{i.name}}</h2>
+      <h3 class="card-text">Id: {{i.id}}</h3>
+      <h4 class="card-text">Breed: {{i.breed}}</h4>
       <h5 class="card-text">Posted By: </h5>
       <p class="card-text"><small class="text-muted">Last updated: {{ i.post_time }}</small></p>
     </div>

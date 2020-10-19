@@ -154,3 +154,7 @@ MEDIA_URL = '/media/'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+
+LOGIN_URL='/sign-up'
+LOGIN_REDIRECT_URL='/sign-up'

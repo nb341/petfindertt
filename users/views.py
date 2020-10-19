@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from posts.models import MissingPets
 from datetime import datetime, timezone
-
+import math
 
 # Create your views here.
 def home(request):
@@ -15,7 +15,12 @@ def home(request):
     for i in val['mp']:
        now = datetime.now(timezone.utc)
        d = now - i.post_time
-       i.post_time = d.days
+
+       days = math.floor(d.days)
+       hours = math.floor(d.seconds/(60*60))
+       #hours = tmp/(3600)
+      # minutes = tmp%3600
+       i.post_time = str(days)+" days and "+str(hours)+" hours ago"
 
     return render(request, "home.html", val)
 
@@ -88,6 +93,7 @@ def login_view(request):
     if request.method=="POST":
         username = request.POST['username']
         password = request.POST['password']
+        print(username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request,user)
@@ -95,6 +101,7 @@ def login_view(request):
         else:
         # Return an 'invalid login' error message.
             return JsonResponse({'success':False})
+
 def logout_view(request):
     logout(request)
     # Redirect to a success page.
